@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker and Kubernetes</title>
+    <style>
+	* {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: url("https://www.google.com/imgres?imgurl=https%3A%2F%2Fmedia.istockphoto.com%2Fvectors%2Fabstract-blue-colored-technological-background-vector-id547038724&imgrefurl=https%3A%2F%2Fwww.istockphoto.com%2Fvector%2Fabstract-blue-colored-technological-background-gm547038724-98772759&tbnid=k9PdFcYVIZuoSM&vet=12ahUKEwjdvojrhcDxAhUyBLcAHZPYAhsQMygRegUIARCLAg..i&docid=n43PqPKYIbOCDM&w=1024&h=727&q=technological%20background%20images&ved=2ahUKEwjdvojrhcDxAhUyBLcAHZPYAhsQMygRegUIARCLAg");
+            background-repeat:  no-repeat;
+            background-size: 1600px 800px;
+            opacity: 10.0; 
+        }
+        #Input{
+            /* border: 2px solid red; */
+            position: absolute;
+            color: black;
+            top: 5%;
+            left: 15%;
+            width: 80%;
+            height: 94%;
+            padding: 2px 2px;
+           
+        }
+        span{
+            font-size: 25px;
+            color: maroon;
+            font-family: "Brush Script m7", cursive;
+            font-weight: bold;
+        }
+        input{
+            font-size: 20px;
+            margin: 0 30px;
+            color: black;
+            background: none;
+            border: 2px solid black;
+            border-radius: 14px;
+            margin: 0 10px;
+            padding: 0 13px;
+        }
+        ::placeholder{
+            color: grey;
+        }
+        #show{
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 23px;
+            font-size: 23px;
+            padding: 15px 0;
+            margin: 11px 0;
+            overflow: auto;
+	          color: #00008B;
+        }
+	
+    </style>
+</head>
+<body>
+    <div id="first">
+        <div id="Input">
+            <span>root@localhost ~ # </span> 
+            <input id="in" type="text" placeholder="Enter command" onkeypress="add(event)">
+	    <pre id="show"></pre>
+        </div>
+    </div>
+</body>
+<script>
+    function add(z)
+    {
+        if(z.keyCode == 13)
+        {
+            document.getElementById('show').innerHTML = '';
+            var i = document.getElementById('in').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://10.0.2.15/cgi-bin/test.py?s="+i, false);
+            xhr.send();
+            var output = xhr.responseText;
+            document.getElementById('show').innerHTML = output;
+            document.getElementById('in').value = '';
+        }
+    }
+</script>
+</html>
